@@ -11,4 +11,4 @@ class LoginPageLocators:
 
 
 class ProductPageLocators:
-    pass
+    ADD_TO_BASKET_BUTTON = (By.CSS_SELECTOR, '.btn-add-to-basket')
