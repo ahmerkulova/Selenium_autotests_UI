@@ -3,13 +3,21 @@ from .locators import ProductPageLocators
 
 
 class ProductPage(BasePage):
+    def should_not_be_success_message(self):
+        assert self.is_not_element_present(*ProductPageLocators.SUCCESS_MESSAGE), \
+            'Success message is presented, but should not be before adding item to basket'
+
+    def should_disappear_success_message(self):
+        assert self.is_disappeared(*ProductPageLocators.SUCCESS_MESSAGE), \
+            'Success message is not disappeared after adding item to basket'
+
     def add_product_to_basket(self):
         add_product_to_basket_button = self.browser.find_element(*ProductPageLocators.ADD_TO_BASKET_BUTTON)
         add_product_to_basket_button.click()
 
-    def should_be_message_add_to_basket(self):
-        assert self.is_element_present(*ProductPageLocators.ADD_TO_BASKET_MESSAGE), \
-            'Add to basket message is not presented'
+    def should_be_success_message(self):
+        assert self.is_element_present(*ProductPageLocators.SUCCESS_MESSAGE), \
+            'Success message after adding to basket is not presented'
 
     def should_be_item_name(self):
         assert self.is_element_present(*ProductPageLocators.ITEM_NAME_PRODUCT_PAGE), \
