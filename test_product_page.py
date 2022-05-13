@@ -13,6 +13,7 @@ urls = [f"{link}/?promo=offer{offer_num}" for offer_num in range(10)]
 
 
 # @pytest.mark.parametrize('link', [*urls[:7], pytest.param(urls[7], marks=pytest.mark.xfail(reason="Bugged url")), *urls[8:]])
+@pytest.mark.need_review
 def test_guest_can_add_product_to_basket(browser):  # add link here as a parameter to parametrize
     page = ProductPage(browser, link)
     page.open()
@@ -42,7 +43,7 @@ def test_guest_cant_see_success_message(browser):
 
 
 @pytest.mark.negative
-@pytest.mark.skip(reason='Message should not disappear for current version of the page')
+@pytest.mark.xfail(reason='Message should not disappear for current version of the page')
 def test_message_disappeared_after_adding_product_to_basket(browser):
     page = ProductPage(browser, link)
     page.open()
@@ -56,6 +57,7 @@ def test_guest_should_see_login_link_on_product_page(browser):
     page.should_be_login_link()
 
 
+@pytest.mark.need_review
 def test_guest_can_go_to_login_page_from_product_page(browser):
     page = ProductPage(browser, link_item2)
     page.open()
@@ -64,6 +66,7 @@ def test_guest_can_go_to_login_page_from_product_page(browser):
     login_page.should_be_login_page()
 
 
+@pytest.mark.need_review
 def test_guest_cant_see_product_in_basket_opened_from_product_page(browser):
     page = ProductPage(browser, link_item2)
     page.open()
@@ -92,6 +95,7 @@ class TestUserAddToBasketFromProductPage:
         page.open()
         page.should_not_be_success_message()
 
+    @pytest.mark.need_review
     def test_user_can_add_product_to_basket(self, browser):
         page = ProductPage(browser, link)
         page.open()
