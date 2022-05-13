@@ -14,7 +14,7 @@ urls = [f"{link}/?promo=offer{offer_num}" for offer_num in range(10)]
 
 # @pytest.mark.parametrize('link', [*urls[:7], pytest.param(urls[7], marks=pytest.mark.xfail(reason="Bugged url")), *urls[8:]])
 @pytest.mark.need_review
-def test_guest_can_add_product_to_basket(browser):  # add link here as a parameter to parametrize
+def test_guest_can_add_product_to_basket(browser):  # add 'link' here as a parameter to parametrize
     page = ProductPage(browser, link)
     page.open()
     page.add_product_to_basket()
