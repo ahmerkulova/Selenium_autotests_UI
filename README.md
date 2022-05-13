@@ -1,5 +1,5 @@
 ## Final project of the course [Test automation via Selenium and Python](https://stepik.org/course/575) (Stepik)
-###Stack
+### Stack
 - Selenium Webdriver 3.14.0
 - Python 3.10.2
 - Google Chrome 101.0.4951.41
