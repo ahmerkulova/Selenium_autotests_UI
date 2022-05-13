@@ -69,3 +69,21 @@ def test_guest_cant_see_product_in_basket_opened_from_product_page(browser):
     basket_page = BasketPage(browser, browser.current_url)
     basket_page.should_not_be_items_in_empty_basket()
     basket_page.should_be_message_in_empty_basket()
+
+
+class TestUserAddToBasketFromProductPage:
+    def test_user_cant_see_success_message(self, browser):
+        page = ProductPage(browser, link)
+        page.open()
+        page.should_not_be_success_message()
+
+    def test_user_can_add_product_to_basket(self, browser):
+        page = ProductPage(browser, link)
+        page.open()
+        page.add_product_to_basket()
+        page.should_be_success_message()
+        page.should_be_item_name()
+        page.should_be_correct_item_name_basket()
+        page.should_be_item_price()
+        page.should_be_correct_basket_price()
+
